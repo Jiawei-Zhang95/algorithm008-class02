@@ -226,3 +226,52 @@ insertFront，先减再赋值
 insertLast，先赋值再加
 
 >需要注意的点：1.数组大小是给定大小+1，因为rear所指向的位置始终是空的 2.末尾插入要先赋值再移动rear指针 3.队满和队空的条件需要注意的点：1.数组大小是给定大小+1，因为rear所指向的位置始终是空的 2.末尾插入要先赋值再移动rear指针 3.队满和队空的条件
+
+
+
+
+
+
+
+### LeetCode 42: 接雨水
+
+
+
+![image-20200419172912390](C:\Users\Jimmy\AppData\Roaming\Typora\typora-user-images\image-20200419172912390.png)
+
+```
+pushed index:0
+当前扫描高度1
+栈的最前高度0
+pushed index:1
+pushed index:2
+当前扫描高度3
+栈的最前高度0
+新增高度1
+当前sum: 1
+当前扫描高度3
+栈的最前高度1
+pushed index:3
+pushed index:4
+pushed index:5
+pushed index:6
+当前扫描高度2
+栈的最前高度0
+新增高度0
+当前sum: 1
+当前扫描高度2
+栈的最前高度0
+新增高度2
+当前sum: 3
+当前扫描高度2
+栈的最前高度1
+新增高度3
+当前sum: 6
+pushed index:7
+```
+
+![image-20200419173048032](C:\Users\Jimmy\AppData\Roaming\Typora\typora-user-images\image-20200419173048032.png)
+
+
+
+只要扫描到右边高度比左边高的，那么就计算积水。并且是一列一列计算，计算完一次就pop（）
