@@ -154,3 +154,75 @@ digits[i] = digits[i] % 10;
 如果所有都要进位的话，那么就新建int[nums.length +1 ] 然后将第一位变成1.
 
 > 999 -> 1000
+
+
+
+
+
+
+
+### Queue, Priority Queue源码分析
+
+
+
+**Priority Queue:**
+
+```Java
+ public boolean offer(E e) {
+        if (e == null)
+            throw new NullPointerException();
+        modCount++;
+        int i = size;
+        if (i >= queue.length)
+            grow(i + 1);
+        size = i + 1;
+        if (i == 0)
+            queue[0] = e;
+        else
+            siftUp(i, e);
+        return true;
+    }
+```
+
+当加入一个新元素的时候，PQ会首先检查queue的长度，如果不够的话就使用grow（）增加队列长度。
+
+然后使用
+
+```Java
+siftUp(i, e);
+```
+
+进行对最新加入元素选择最合适的地方插入。
+
+```Java
+private void siftUpComparable(int k, E x) {
+        Comparable<? super E> key = (Comparable<? super E>) x;
+        while (k > 0) {
+            int parent = (k - 1) >>> 1;
+            Object e = queue[parent];
+            if (key.compareTo((E) e) >= 0)
+                break;
+            queue[k] = e;
+            k = parent;
+        }
+        queue[k] = key;
+    }
+```
+
+新加入的元素会一直和parent相对比，一直到compareTo返回结果大于等于0。然后插入该元素。
+
+
+
+
+
+### LeetCode 641: 设计循环双端队列
+
+思路：数组中始终有一个front和rear
+
+rear永远指向一个空的地方。
+
+insertFront，先减再赋值
+
+insertLast，先赋值再加
+
+>需要注意的点：1.数组大小是给定大小+1，因为rear所指向的位置始终是空的 2.末尾插入要先赋值再移动rear指针 3.队满和队空的条件需要注意的点：1.数组大小是给定大小+1，因为rear所指向的位置始终是空的 2.末尾插入要先赋值再移动rear指针 3.队满和队空的条件
